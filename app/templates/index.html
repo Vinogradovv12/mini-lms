@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="p-5 mb-5 bg-white rounded-3 shadow-sm">
+        <div class="container-fluid py-2">
+            
+            <div class="mb-3">
+                <span class="badge bg-success me-1">FastAPI Project</span>
+                <span class="badge bg-dark me-1">JWT</span>
+                <span class="badge bg-primary me-1">RBAC</span>
+            </div>
+
+            <h1 class="display-5 fw-bold">LMS Platform</h1>
+            
+            <p class="col-md-8 fs-5 text-muted">
+                Learning Management System built with modern tech stack.
+            </p>
+
+            <ul class="fs-6 text-secondary mb-4">
+                <li>FastAPI & SQLAlchemy ORM</li>
+                <li>PostgreSQL Database</li>
+                <li>JWT Authentication & Role-Based Access Control</li>
+            </ul>
+
+            <a href="/dashboard" class="btn btn-success btn-lg">
+                Start Learning
+            </a>
+        </div>
+    </div>
+
+    <h2 class="mb-4">Available Courses</h2>
+    
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        {% for course in courses %}
+        <div class="col">
+            <div class="card shadow-sm h-100">
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title fw-bold">{{ course.title }}</h5>
+                    <p class="card-text text-muted flex-grow-1">{{ course.description }}</p>
+                    <p class="card-text small mb-3">
+                        <strong>Author:</strong> {{ course.author.username }}
+                    </p>
+                    <a href="/courses/{{ course.id }}" class="btn btn-primary mt-autow-100">
+                        Open Course
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

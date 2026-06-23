@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>
+    Admin Panel
+</h1>
+
+<table class="table">
+
+    <thead>
+
+        <tr>
+
+            <th>ID</th>
+
+            <th>User</th>
+
+            <th>Role</th>
+
+            <th>Created</th>
+
+            <th>Enrolled</th>
+
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for item in users %}
+
+        <tr>
+
+            <td>
+                {{ item.user.id }}
+            </td>
+
+            <td>
+                {{ item.user.username }}
+            </td>
+
+            <td>
+                {{ item.user.role.name }}
+            </td>
+
+            <td>
+                {{ item.created }}
+            </td>
+
+            <td>
+                {{ item.enrolled }}
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

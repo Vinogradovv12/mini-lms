@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container d-flex align-items-center justify-content-center min-vh-75 py-5">
+    <div class="text-center col-md-6 col-lg-5">
+        <h1 class="display-1 fw-bold text-secondary mb-0">401</h1>
+        <h2 class="h4 fw-semibold text-dark my-3">Unauthorized Access</h2>
+        
+        <p class="text-secondary mb-4">
+            {{ message if message else "You need to log in to access this page. Please sign in and try again." }}
+        </p>
+        
+        <div class="d-flex justify-content-center gap-2">
+            <a href="/login" class="btn btn-primary px-4 py-2 shadow-sm fw-medium">
+                Log In
+            </a>
+            <a href="/" class="btn btn-outline-secondary px-4 py-2 fw-medium">
+                Homepage
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

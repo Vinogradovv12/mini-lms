@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="bg-white rounded-4 shadow-sm p-4 mb-5">
+    <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+        <div>
+            <h1 class="display-6">
+                Welcome back, {{ current_user.username }}
+            </h1>
+            <p class="text-secondary mb-3">
+                Manage courses, continue learning and track progress. | Role: {{ current_user.role.name }}
+            </p>
+            <div class="d-flex gap-3">
+                <div>
+                    <strong>{{ user_courses|length }}</strong> Courses
+                </div>
+                <div>
+                    <strong>{{ other_courses|length }}</strong> Available
+                </div>
+            </div>
+        </div>
+
+        <div>
+            {% if can_create_course %}
+            <a href="/courses/create" class="btn btn-success">
+                Create Course
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="row">
+
+    <h3 class="mb-3">
+        My Courses
+    </h3>
+
+    {% if not user_courses %}
+    <div class="alert alert-info">
+        You don't have any courses yet.
+    </div>
+    {% endif %}
+
+    {% for course in user_courses %}
+    <div class="col-md-4 mb-4">
+         <div class="card shadow border-0 h-100">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">{{ course.title }}</h5>
+                <p class="card-text text-secondary mb-4">{{ course.description }}</p>
+                
+                
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top">
+                    <a href="/courses/{{ course.id }}" class="btn btn-primary px-4">
+                        Open
+                    </a>
+                    {% if course.author.id == current_user.id %}
+                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle px-2 py-1.5 fs-7 rounded-pill">
+                        Author
+                    </span>
+                    {% else %}
+                    <span class="badge bg-success-subtle text-success border border-success-subtle px-2 py-1.5 fs-7 rounded-pill">
+                        Enrolled
+                    </span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <h3 class="mb-3 mt-5">
+        Other Courses
+    </h3>
+
+    {% for course in other_courses %}
+    <div class="col-md-4 mb-4">
+        <div class="card shadow border-0 h-100">
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">{{ course.title }}</h5>
+                <p class="card-text text-secondary mb-4">{{ course.description }}</p>
+                
+                <div class="d-flex justify-content-between align-items-center mt-auto pt-3 border-top">
+                    <a href="/courses/{{ course.id }}" class="btn btn-outline-primary px-4">
+                        Open
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

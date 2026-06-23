@@ -1,0 +1,156 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card border-0 shadow">
+
+    <div class="card-body p-5">
+
+        <span class="badge bg-primary mb-3">
+
+            Course
+
+        </span>
+
+        <h1>
+
+            {{ course.title }}
+
+        </h1>
+
+        <p class="text-muted">
+
+            by {{ course.author.username }}
+
+        </p>
+
+        <hr>
+
+        <p class="lead">
+
+            {{ course.description }}
+
+        </p>
+
+        {% if current_user %}
+
+        {% if not is_enrolled %}
+
+        {% if not is_author %}
+
+        <form method="post" action="/courses/{{ course.id }}/enroll">
+
+            <button class="btn btn-success mb-4">
+
+                Enroll
+
+            </button>
+
+        </form>
+
+        {% elif is_author %}
+
+        <div class="alert alert-success">
+
+            You are is author of this course.
+
+        </div>
+
+        {% else %}
+
+        <div class="alert alert-success">
+
+            You are enrolled in this course.
+
+        </div>
+
+        {% endif %}
+
+        {% endif %}
+
+        {% endif %}
+
+        <h3>
+            Lessons
+        </h3>
+
+        {% if current_user %}
+        
+        {% if can_manage_course %}
+        
+        
+        <div class="mb-4">
+            
+            <a href="/courses/{{ course.id }}/lessons/create" class="btn btn-success mb-4">
+    
+                Create Lesson
+                
+            </a>
+            
+            <a href="/courses/{{ course.id }}/edit" class="btn btn-warning mb-4">
+                
+                Edit
+                
+            </a>
+            
+
+            <form method="post" action="/courses/{{ course.id }}/delete" class="d-inline">
+
+                <button class="btn btn-danger mb-4">
+
+                    Delete
+
+                </button>
+
+            </form>
+
+        </div>
+
+        {% endif %}
+
+        {% endif %}
+
+
+        <ul class="list-group">
+
+            {% for lesson in course.lessons %}
+
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+
+                <div>
+
+                    <strong>{{ lesson.title }}</strong>
+
+                    <br>
+
+                    {{ lesson.description }}
+
+                </div>
+
+                <a href="/lessons/{{ lesson.id }}" class="btn btn-outline-primary">
+
+                    Open
+
+                </a>
+
+            </li>
+
+            {% endfor %}
+
+            {% if not course.lessons %}
+
+            <div class="alert alert-light border">
+
+                No lessons yet.
+
+            </div>
+
+            {% endif %}
+
+        </ul>
+
+    </div>
+
+</div>
+
+{% endblock %}
