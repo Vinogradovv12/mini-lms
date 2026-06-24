@@ -1,135 +1,191 @@
-LMS Platform
+# Mini LMS — Learning Management System
 
-Learning Management System built with FastAPI and designed with service-oriented architecture and role-based access control.
+Mini LMS is a web application for course management and learning built with FastAPI.
 
-⸻
+The application supports authentication, authorization, role-based access control, course creation, lesson management, enrollment, and administration features.
 
-Features
+## Features
 
-Authentication & Authorization
-
+### Authentication & Security
 * JWT authentication
-* Login / Registration
-* Role-Based Access Control (RBAC)
-* Protected pages and API endpoints
+* Password hashing
+* Role-based access control (RBAC)
+* Permission-based access
+* Custom domain exceptions
+* Centralized exception handling
+* Password validation
+* Logging system
+* Rate limiting
 
-⸻
-
-Course Management
-
+### Courses
 * Create courses
 * Edit courses
 * Delete courses
-* Enroll into courses
-* Course ownership validation
+* Enroll in courses
+* View available courses
 
-⸻
-
-Lesson Management
-
+### Lessons
 * Create lessons
 * View lessons
-* Access validation
+* Course access validation
 
-⸻
-
-Administration
-
+### Administration
 * Admin dashboard
-* User overview
-* Course statistics
+* View users
+* View created/enrolled courses
+* Manage access levels
 
-⸻
+### Frontend
+* Server-side rendering (Jinja2)
+* Bootstrap 5
+* Custom error pages
+* Responsive layout
 
-Security
+---
 
-* Password hashing
-* Custom domain exceptions
-* Validation handlers
-* Rate limiting
-* Structured logging
-* Separation of service and HTTP layers
+## Architecture
 
-⸻
+Router
+↓
+Dependency 
+Layer
+↓
+Service
+Layer
+↓
+Models / Database
 
-Architecture
+Project follows layered architecture:
 
-Project structure:
+```text
+app/
+├── authorization/
+├── core/
+├── dependencies/
+├── exceptions/
+├── models/
+├── routers/
+│   ├── api/
+│   └── frontend/
+├── schemas/
+├── services/
+├── static/
+├── templates/
+├── validation/
+└── main.py
+```
 
-mini-lms/
-├── alembic/
-│   └── versions/
-└── app/
-    ├── authorization/
-    ├── core/
-    ├── dependencies/
-    │   ├── api/
-    │   └── frontend/
-    ├── exceptions/
-    ├── models/
-    ├── routers/
-    │   ├── api/
-    │   └── frontend/
-    ├── schemas/
-    ├── services/
-    ├── templates/
-    │   └── errors/
-    └── validation/
+---
 
-⸻
+## Technologies
 
-Technologies
-
+* Python 3.14
 * FastAPI
 * SQLAlchemy
 * PostgreSQL
-* Pydantic
+* Alembic
 * Jinja2
+* Bootstrap 5
 * JWT
-* Bootstrap
+* Pydantic
+* Uvicorn
 
-⸻
+---
 
-Run
+## Installation
+
+Clone repository:
+```bash
+git clone <https://github.com/Vinogradovv12/mini-lms>
+cd mini-lms
+```
+
+Create virtual environment:
+```bash
+python -m venv venv
+```
+
+Activate:
+
+* **macOS / Linux**
+  ```bash
+  source venv/bin/activate
+  ```
+* **Windows**
+  ```bash
+  venv\Scripts\activate
+  ```
 
 Install dependencies:
-
+```bash
 pip install -r requirements.txt
+```
 
-Run server from /mini-lms:
+Configure environment:
+```env
+DATABASE_URL=
+SECRET_KEY=
+ALGORITHM=
+```
 
+Run migrations:
+```bash
+alembic upgrade head
+```
+
+Start server:
+```bash
 python3 -m app.main
+```
+OR
+```bash
+uvicorn app.main:app --reload
+```
 
 Open:
+[http://0.0.0.0:9090](http://0.0.0.0:9090)
+OR
+[http://127.0.0.1:8000](http://127.0.0.1:8000)
+---
 
-http://localhost:9090
+## Screenshots
 
-⸻
+### Home Page
+![Home Page](docs/images/home_page.png)
 
-Security Improvements
+### Course Page
+![Course Page](docs/images/course_page.png)
 
-Implemented:
+### Admin Panel
+![Admin Panel](docs/images/admin_panel.png)
 
-* Service Layer
-* Domain Exceptions
-* Response Schemas
-* Validation
-* RBAC
+---
+
+## Implemented Improvements
+
+* Custom domain exceptions
+* API and frontend error separation
+* Template-based rendering
+* Response schemas
+* Validation layer
 * Logging
-* Error Pages
+* Cleaner service architecture
+* Permission dependencies
 
-⸻
+---
 
-Future Improvements
+## Future Improvements
 
-* Docker
-* Admin CRUD
-* Course Analytics
-* API Documentation
+* Docker deployment
+* Automated tests
 * CI/CD
+* Course analytics
+* User management UI
+* Cloud deployment
 
-⸻
+---
 
-Author
+## Author
 
-University practice project.
+University Practice Project  
+2026
