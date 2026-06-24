@@ -2,6 +2,7 @@ from typing import List
 
 from pydantic import BaseModel
 
+from app.schemas.lesson import LessonPreviewResponse
 from app.schemas.user import UserResponse
 
 
@@ -14,7 +15,7 @@ class CourseResponse(BaseModel):
     id: int
     title: str
     description: str
-    
+    lessons: List[LessonPreviewResponse]
     author: UserResponse
 
     class Config:

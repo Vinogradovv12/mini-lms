@@ -22,4 +22,6 @@ class LessonPreviewResponse(BaseModel):
     title: str
     description: str
     course_id: int
-        
+
+    class Config:
+        from_attributes = True

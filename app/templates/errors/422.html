@@ -1,23 +1,17 @@
 {% extends "base.html" %}
-
 {% block content %}
-<div class="container d-flex align-items-center justify-content-center min-vh-75 py-5">
-    <div class="text-center col-md-6 col-lg-5">
-        <h1 class="display-1 fw-bold text-muted mb-0">422</h1>
-        <h2 class="h4 fw-semibold text-dark my-3">Unprocessable Entity</h2>
-        
-        <p class="text-secondary mb-4">
-            {{ message if message else "The server understood your request, but the enclosed data contains validation errors." }}
-        </p>
-        
-        <div class="d-flex justify-content-center gap-2">
-            <button onclick="window.history.back();" class="btn btn-dark px-4 py-2 shadow-sm fw-medium">
-                Go Back & Fix
-            </button>
-            <a href="/" class="btn btn-outline-secondary px-4 py-2 fw-medium">
-                Homepage
-            </a>
+    <div class="container d-flex align-items-center justify-content-center min-vh-75 py-5">
+        <div class="text-center col-md-6 col-lg-5">
+            <h1 class="display-1 fw-bold text-muted mb-0">422</h1>
+            <h2 class="h4 fw-semibold text-dark my-3">Unprocessable Entity</h2>
+            <p class="text-secondary mb-4">
+                {{ message if message else "The server understood your request, but the enclosed data contains validation errors." }}
+            </p>
+            <div class="d-flex justify-content-center gap-2">
+                <button onclick="window.history.back();"
+                        class="btn btn-dark px-4 py-2 shadow-sm fw-medium">Go Back & Fix</button>
+                <a href="/" class="btn btn-outline-secondary px-4 py-2 fw-medium">Homepage</a>
+            </div>
         </div>
     </div>
-</div>
 {% endblock %}

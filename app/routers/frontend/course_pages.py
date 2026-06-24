@@ -144,10 +144,10 @@ def edit_course(
 ):
     update_course(
         db,
-        access.actor,
         course_id,
         title,
-        description
+        description,
+        access.actor
     )
 
     return RedirectResponse(

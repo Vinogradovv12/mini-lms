@@ -1,18 +1,14 @@
 {% extends "base.html" %}
-
 {% block content %}
-<div class="container d-flex align-items-center justify-content-center min-vh-75 py-5">
-    <div class="text-center col-md-6 col-lg-5">
-        <h1 class="display-1 fw-bold text-warning mb-0">403</h1>
-        <h2 class="h4 fw-semibold text-dark my-3">Access Denied</h2>
-        
-        <p class="text-secondary mb-4">
-            {{ message if message else "You do not have permission to view this resource. Contact support if you think this is a mistake." }}
-        </p>
-        
-        <a href="/" class="btn btn-warning px-4 py-2 shadow-sm fw-medium text-white">
-            Back to Homepage
-        </a>
+    <div class="container d-flex align-items-center justify-content-center min-vh-75 py-5">
+        <div class="text-center col-md-6 col-lg-5">
+            <h1 class="display-1 fw-bold text-warning mb-0">403</h1>
+            <h2 class="h4 fw-semibold text-dark my-3">Access Denied</h2>
+            <p class="text-secondary mb-4">
+                {{ message if message else "You do not have permission to view this resource. Contact support if you think this is a mistake." }}
+            </p>
+            <a href="/"
+               class="btn btn-warning px-4 py-2 shadow-sm fw-medium text-white">Back to Homepage</a>
+        </div>
     </div>
-</div>
 {% endblock %}

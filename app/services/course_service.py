@@ -197,21 +197,6 @@ def get_dashboard_courses(
     db: Session,
     user_id: int
 ):
-    user_courses = get_user_courses(
-        db,
-        user_id
-    )
-
-    other_courses = get_other_courses(
-        db,
-        user_id
-    )
-
-    # return {
-    #     "user_courses": user_courses,
-    #     "other_courses": other_courses
-    # }
-
     return DashboardCoursesResponse(
         user_courses=get_user_courses(
             db,

@@ -1,6 +1,7 @@
 import os
 
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 import uvicorn
 
 from app.core.exception_registery import register_exception_handlers
@@ -27,8 +28,12 @@ from app.core.exception_handlers import domain_exception_handler
 
 from app.core.limiter import limiter
 
+current_dir = os.path.dirname(os.path.abspath(__file__))
+static_dir = os.path.join(current_dir, "static")
 
 app = FastAPI()
+
+app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
 app.include_router(course_pages_router)
 app.include_router(auth_pages_router)

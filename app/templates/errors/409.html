@@ -1,23 +1,17 @@
 {% extends "base.html" %}
-
 {% block content %}
-<div class="container d-flex align-items-center justify-content-center min-vh-75 py-5">
-    <div class="text-center col-md-6 col-lg-5">
-        <h1 class="display-1 fw-bold text-info mb-0">409</h1>
-        <h2 class="h4 fw-semibold text-dark my-3">Conflict Detected</h2>
-        
-        <p class="text-secondary mb-4">
-            {{ message if message else "The request could not be completed due to a conflict with the current state of the resource." }}
-        </p>
-        
-        <div class="d-flex justify-content-center gap-2">
-            <button onclick="window.location.reload();" class="btn btn-info text-white px-4 py-2 shadow-sm fw-medium">
-                Refresh Page
-            </button>
-            <a href="/" class="btn btn-outline-secondary px-4 py-2 fw-medium">
-                Homepage
-            </a>
+    <div class="container d-flex align-items-center justify-content-center min-vh-75 py-5">
+        <div class="text-center col-md-6 col-lg-5">
+            <h1 class="display-1 fw-bold text-info mb-0">409</h1>
+            <h2 class="h4 fw-semibold text-dark my-3">Conflict Detected</h2>
+            <p class="text-secondary mb-4">
+                {{ message if message else "The request could not be completed due to a conflict with the current state of the resource." }}
+            </p>
+            <div class="d-flex justify-content-center gap-2">
+                <button onclick="window.location.reload();"
+                        class="btn btn-info text-white px-4 py-2 shadow-sm fw-medium">Refresh Page</button>
+                <a href="/" class="btn btn-outline-secondary px-4 py-2 fw-medium">Homepage</a>
+            </div>
         </div>
     </div>
-</div>
 {% endblock %}
