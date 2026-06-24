@@ -143,9 +143,13 @@ uvicorn app.main:app --reload
 ```
 
 Open:
+```text
 [http://0.0.0.0:9090](http://0.0.0.0:9090)
+```
 OR
+```text
 [http://127.0.0.1:8000](http://127.0.0.1:8000)
+```
 ---
 
 ## Screenshots
