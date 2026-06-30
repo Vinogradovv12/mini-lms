@@ -2,6 +2,8 @@ from fastapi import FastAPI
 
 from fastapi.exceptions import RequestValidationError
 from pydantic import ValidationError
+from slowapi.errors import RateLimitExceeded
+from slowapi.extension import _rate_limit_exceeded_handler
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from app.exceptions.base import (
@@ -19,6 +21,11 @@ from app.core.exception_handlers import (
 def register_exception_handlers(
     app: FastAPI
 ):
+    app.add_exception_handler(
+        RateLimitExceeded,
+        _rate_limit_exceeded_handler
+    )
+
     app.add_exception_handler(
         DomainError,
         domain_exception_handler

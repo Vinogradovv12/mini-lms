@@ -22,6 +22,7 @@ from app.routers.api.enrollment import router as enrollment_router
 
 from slowapi.errors import RateLimitExceeded
 from slowapi.middleware import SlowAPIMiddleware
+from slowapi import _rate_limit_exceeded_handler
 
 from app.exceptions.base import DomainError
 from app.core.exception_handlers import domain_exception_handler
@@ -35,6 +36,12 @@ app = FastAPI()
 
 app.mount("/static", StaticFiles(directory=static_dir), name="static")
 
+app.state.limiter = limiter
+
+app.add_middleware(SlowAPIMiddleware)
+
+register_exception_handlers(app)
+
 app.include_router(course_pages_router)
 app.include_router(auth_pages_router)
 app.include_router(dashboard_pages_router)
@@ -45,12 +52,6 @@ app.include_router(auth_router)
 app.include_router(course_router)
 app.include_router(lesson_router)
 app.include_router(enrollment_router)
-
-app.state.limiter = limiter
-
-app.add_middleware(SlowAPIMiddleware)
-
-register_exception_handlers(app)
 
 
 if __name__ == "__main__":
